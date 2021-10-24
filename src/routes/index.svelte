@@ -23,5 +23,5 @@
 {#if user}
   LOGGED IN {user}
 {:else}
-  YOU NEED TO LOG IN
+  <a href="/api/auth/google">YOU NEED TO LOG IN</a>
 {/if}
