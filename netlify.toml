@@ -1,7 +1,10 @@
 [build]
   command = "npm run build"
-  functions = "lambda"
   publish = "dist"
+
+[functions]
+  directory = "lambda"
+  node_bundler = "esbuild"
 
 [[redirects]]
   from = "/api/*"
