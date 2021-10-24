@@ -29,8 +29,10 @@
   <title>OAuth with Google</title>
 </svelte:head>
 
-{#if user}
+<!-- {#if user}
   LOGGED IN {user}
 {:else}
   <a href="/api/auth/google">YOU NEED TO LOG IN</a>
-{/if}
+{/if} -->
+
+Hi
