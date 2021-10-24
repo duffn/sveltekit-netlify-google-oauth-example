@@ -16,11 +16,11 @@
 
 {#if user}
 	<h2>Welcome {user}</h2>
-	<a href="/logout" rel="external">
+	<a href="/auth/logout" rel="external">
 		<button>Logout</button>
 	</a>
 {:else}
-	<a href="/login" rel="external">
+	<a href="/auth/login" rel="external">
 		<button>Login using Github</button>
 	</a>
 {/if}
