@@ -1,13 +1,19 @@
-const { sign } = require('jsonwebtoken');
+// const { sign } = require('jsonwebtoken');
 const { Strategy: GoogleStrategy } = require('passport-google-oauth2');
 const passport = require('passport');
-const passportJwt = require('passport-jwt');
+// const passportJwt = require('passport-jwt');
 
-const { BASE_URL, ENDPOINT, GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, SECRET } = require('./config');
+const {
+  BASE_URL,
+  ENDPOINT,
+  GOOGLE_CLIENT_ID,
+  GOOGLE_CLIENT_SECRET
+  //SECRET
+} = require('./config');
 
-function authJwt(email) {
-  return sign({ user: { email } }, SECRET);
-}
+// function authJwt(email) {
+//   return sign({ user: { email } }, SECRET);
+// }
 
 passport.use(
   new GoogleStrategy(
@@ -21,9 +27,9 @@ passport.use(
       try {
         console.log(profile);
         const email = profile.emails[0].value;
-        const jwt = authJwt(email);
+        // const jwt = authJwt(email);
 
-        return done(null, { email, jwt });
+        return done(null, { email });
       } catch (error) {
         return done(error);
       }
@@ -31,23 +37,26 @@ passport.use(
   )
 );
 
-passport.use(
-  new passportJwt.Strategy(
-    {
-      jwtFromRequest(req) {
-        if (!req.cookies) throw new Error('Missing cookie-parser middleware');
-        return req.cookies.jwt;
-      },
-      secretOrKey: SECRET
-    },
-    async ({ user: { email } }, done) => {
-      try {
-        const jwt = authJwt(email);
+// passport.use(
+//   new passportJwt.Strategy(
+//     {
+//       jwtFromRequest(req) {
+//         if (!req.cookies) throw new Error('Missing cookie-parser middleware');
+//         return req.cookies.jwt;
+//       },
+//       secretOrKey: SECRET
+//     },
+//     async ({ user: { email } }, done) => {
+//       try {
+//         const jwt = authJwt(email);
 
-        return done(null, { email, jwt });
-      } catch (error) {
-        return done(error);
-      }
-    }
-  )
-);
+//         return done(null, { email, jwt });
+//       } catch (error) {
+//         return done(error);
+//       }
+//     }
+//   )
+// );
+
+passport.serializeUser((user, done) => done(user ? null : 'null user', user));
+passport.deserializeUser((user, done) => done(user ? null : 'null user', user));
