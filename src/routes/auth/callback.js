@@ -14,7 +14,6 @@ export async function get(req) {
 			req.locals.user = account['email'];
 			return {
 				status: 302,
-				// redirect:
 				headers: { Location: jwtState['finalRedirect'] }
 			};
 		} catch (err) {
