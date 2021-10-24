@@ -2,21 +2,20 @@ import jwt from 'jsonwebtoken';
 
 export async function get(req) {
 	let account = {};
-	let jwtState;
+	// let jwtState;
 	let code = req.query.get('code');
 	let state = req.query.get('state');
 
 	if (code && state) {
 		try {
-			jwtState = jwt.verify(state, process.env['SECRET']);
+			// jwtState = jwt.verify(state, process.env['SECRET']);
 
 			account = await googleAuth(code);
 			req.locals.user = account['email'];
 			return {
 				status: 302,
-				headers: {
-					location: jwtState['finalRedirect']
-				}
+				// redirect: jwtState['finalRedirect']
+				headers: { Location: '/' }
 			};
 		} catch (err) {
 			return {
