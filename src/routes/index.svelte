@@ -1,8 +1,8 @@
 <script context="module">
   export async function load({ page }) {
     return {
-      status: 302,
-      redirect: `/api/auth/google`
+      headers: { Location: '/api/auth/google' },
+      status: 302
     };
   }
 </script>
