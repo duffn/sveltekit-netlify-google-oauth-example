@@ -13,7 +13,9 @@ passport.use(
     },
     async (request, accessToken, refreshToken, profile, done) => {
       try {
-        console.log(profile);
+        if (process.env.NODE_ENV !== 'production') {
+          console.log(profile);
+        }
         const email = profile.emails[0].value;
 
         return done(null, { email });
