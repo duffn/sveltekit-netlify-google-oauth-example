@@ -9,7 +9,7 @@ export async function handle({ request, resolve }) {
 
 	response.headers['set-cookie'] = `user=${
 		request.locals.user || ''
-	}; Path=/; HttpOnly; SameSite=Lax; ${process.env.COOKIE_SECURE ? ' Secure;' : ''}`;
+	}; Path=/; HttpOnly; SameSite=Lax;${process.env.NODE_ENV === 'production' ? ' Secure;' : ''}`;
 
 	return response;
 }
