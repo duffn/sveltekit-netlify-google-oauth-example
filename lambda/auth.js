@@ -6,6 +6,8 @@ const passport = require('passport');
 const serverless = require('serverless-http');
 const helmet = require('helmet');
 
+require('./utils/auth');
+
 const { COOKIE_SECURE, ENDPOINT } = require('./utils/config');
 
 const app = express();
