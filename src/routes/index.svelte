@@ -7,7 +7,7 @@
     let endpoint = process.env.NODE_ENV === 'development' ? '/.netlify/functions' : '/api';
     const res = await fetch(`${endpoint}/auth/status`);
 
-    if (res.ok) {
+    if (res.status == 200) {
       const json = await res.json();
       user = json.email;
     } else {
