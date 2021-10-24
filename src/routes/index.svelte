@@ -1,24 +1,27 @@
-<script context="module">
+<script>
+  import { onMount } from 'svelte';
+
   let user;
 
-  export async function load() {
+  onMount(async () => {
     let endpoint = process.env.NODE_ENV === 'development' ? '/.netlify/functions' : '/api';
-    const res = await fetch(`https://svelte-oauth-example.netlify.app${endpoint}/auth/status`);
+    const res = await fetch(`${endpoint}/auth/status`);
 
     if (res.ok) {
       const json = await res.json();
       user = json.email;
     } else {
-      return {
-        status: 302,
-        redirect: '/api/auth/google'
-      };
+      throw new Error(json);
     }
-  }
+  });
 </script>
 
 <svelte:head>
   <title>OAuth with Google</title>
 </svelte:head>
 
-Hi {user}!
+{#if user}
+  LOGGED IN {user}
+{:else}
+  YOU NEED TO LOG IN
+{/if}
