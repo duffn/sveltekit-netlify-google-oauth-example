@@ -2,6 +2,7 @@ require('dotenv').config();
 
 const cookieParser = require('cookie-parser');
 const express = require('express');
+const sessions = require('client-sessions');
 const passport = require('passport');
 const serverless = require('serverless-http');
 const helmet = require('helmet');
@@ -13,14 +14,22 @@ const { COOKIE_SECURE, ENDPOINT } = require('./utils/config');
 const app = express();
 
 app.use(helmet());
+app.use(
+  sessions({
+    cookieName: 'session',
+    secret: process.env.SESSION_SECRET,
+    cookie: {
+      ephemeral: false,
+      secure: COOKIE_SECURE,
+      httpOnly: true
+    }
+  })
+);
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
 app.use(passport.initialize());
-
-const handleCallback = () => (req, res) => {
-  res.cookie('jwt', req.user.jwt, { httpOnly: true, secure: COOKIE_SECURE }).redirect(`/`);
-};
+app.use(passport.session());
 
 app.get(
   `${ENDPOINT}/auth/google`,
@@ -35,12 +44,7 @@ app.get(
 
 app.get(
   `${ENDPOINT}/auth/google/callback`,
-  passport.authenticate('google', { session: false, failureRedirect: '/' }),
-  handleCallback()
-);
-
-app.get(`${ENDPOINT}/auth/status`, passport.authenticate('jwt', { session: false }), (req, res) =>
-  res.json({ email: req.user.email })
+  passport.authenticate('google', { successRedirect: '/', failureRedirect: '/login' })
 );
 
 module.exports.handler = serverless(app);
