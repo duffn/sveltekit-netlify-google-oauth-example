@@ -31,10 +31,6 @@ app.use(cookieParser());
 app.use(passport.initialize());
 app.use(passport.session());
 
-// const handleCallback = () => (req, res) => {
-//   res.cookie('jwt', req.user.jwt, { httpOnly: true, secure: COOKIE_SECURE }).redirect(`/`);
-// };
-
 app.get(
   `${ENDPOINT}/auth/google`,
   passport.authenticate('google', {
@@ -50,9 +46,5 @@ app.get(
   `${ENDPOINT}/auth/google/callback`,
   passport.authenticate('google', { successRedirect: '/', failureRedirect: '/login' })
 );
-
-// app.get(`${ENDPOINT}/auth/status`, passport.authenticate('jwt', { session: false }), (req, res) =>
-//   res.json({ email: req.user.email })
-// );
 
 module.exports.handler = serverless(app);

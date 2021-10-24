@@ -1,2 +1,2 @@
 HIIIII
-<a href="/api/auth/google">Login</a>
+<a target="_self" href="/api/auth/google">Login</a>
