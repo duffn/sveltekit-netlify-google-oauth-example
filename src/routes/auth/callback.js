@@ -1,16 +1,14 @@
 import jwt from 'jsonwebtoken';
 
 export async function get(req) {
-	let account = {};
-	let jwtState;
-	let code = req.query.get('code');
-	let state = req.query.get('state');
+	const code = req.query.get('code');
+	const state = req.query.get('state');
 
 	if (code && state) {
 		try {
-			jwtState = jwt.verify(state, process.env['SECRET']);
+			const jwtState = jwt.verify(state, process.env['SECRET']);
 
-			account = await googleAuth(code);
+			const account = await googleAuth(code);
 			req.locals.user = account['email'];
 			return {
 				status: 302,
