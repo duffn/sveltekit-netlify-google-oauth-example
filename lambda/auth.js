@@ -4,13 +4,13 @@ const cookieParser = require('cookie-parser');
 const express = require('express');
 const passport = require('passport');
 const serverless = require('serverless-http');
-
-require('./utils/auth');
+const helmet = require('helmet');
 
 const { COOKIE_SECURE, ENDPOINT } = require('./utils/config');
 
 const app = express();
 
+app.use(helmet());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
