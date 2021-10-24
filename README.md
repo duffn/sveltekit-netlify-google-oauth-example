@@ -25,6 +25,13 @@ node -p "require('crypto').randomBytes(64).toString('hex');"
   - Also set `NODE_ENV=production` and `AUTH_REDIRECT=https://my-netlify-app-name.netlify.app/auth/callback`.
 - [Deploy to Netlify](https://docs.netlify.com/site-deploys/create-deploys/).
 
+## Acknowledgements
+
+Thanks to a few different articles and authors for inspiration and help.
+
+- [Sveltekit Authentication](https://blog.hyper.io/sveltekit-authentication/)
+- [Serverless OAuth with Multiple Providers](https://ryanbethel.org/serverless-o-auth-with-multiple-providers)
+
 ## License
 
 [MIT](https://opensource.org/licenses/MIT)
