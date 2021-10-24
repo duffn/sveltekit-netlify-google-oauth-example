@@ -6,7 +6,7 @@ export async function get(req) {
 
 	if (code && state) {
 		try {
-			const jwtState = jwt.verify(state, process.env['SECRET']);
+			const jwtState = jwt.verify(state, process.env['JWT_SECRET']);
 
 			const account = await googleAuth(code);
 			req.locals.user = account['email'];

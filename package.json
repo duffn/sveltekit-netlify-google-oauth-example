@@ -1,5 +1,14 @@
 {
-  "name": "svelte-oauth-example",
+  "name": "sveltekit-netlify-google-oauth-example",
+  "private": true,
+  "author": {
+    "name": "Nicholas Duffy",
+    "url": "https://github.com/duffn/"
+  },
+  "repository": {
+    "url": "https://github.com/duffn/sveltekit-netlify-google-oauth-example"
+  },
+  "license": "MIT",
   "version": "0.0.1",
   "scripts": {
     "dev": "env-cmd svelte-kit dev",

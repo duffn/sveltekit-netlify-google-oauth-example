@@ -12,7 +12,7 @@ export default async function googleOAuthUrl({ finalRedirect }) {
 			provider: 'google',
 			finalRedirect
 		},
-		process.env['SECRET'],
+		process.env['JWT_SECRET'],
 		{ expiresIn: '1 hour' }
 	);
 	const options = {
