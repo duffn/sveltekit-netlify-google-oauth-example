@@ -2,7 +2,7 @@ require('dotenv').config();
 
 const cookieParser = require('cookie-parser');
 const express = require('express');
-const sessions = require('express-session');
+const sessions = require('client-sessions');
 const passport = require('passport');
 const serverless = require('serverless-http');
 const helmet = require('helmet');
