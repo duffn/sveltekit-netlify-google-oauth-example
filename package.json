@@ -4,6 +4,7 @@
   "scripts": {
     "dev": "env-cmd svelte-kit dev",
     "build": "env-cmd svelte-kit build",
+    "build-netlify": "svelte-kit build",
     "preview": "env-cmd svelte-kit preview",
     "lint": "prettier --ignore-path .gitignore --check --plugin-search-dir=. . && eslint --ignore-path .gitignore .",
     "format": "prettier --ignore-path .gitignore --write --plugin-search-dir=. ."
