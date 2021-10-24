@@ -5,7 +5,7 @@
     if (!user) {
       return {
         status: 302,
-        redirect: '/login'
+        headers: { Location: '/login' }
       };
     }
 
