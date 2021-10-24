@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 
-export const get = async (req) => {
+export async function get(req) {
 	let account = {};
 	let jwtState;
 	// console.log(query);
@@ -11,8 +11,8 @@ export const get = async (req) => {
 		try {
 			jwtState = jwt.verify(state, process.env['SECRET']);
 
-			// console.log(jwtState);
-			// console.log('COOODDDDEEE', code);
+			console.log(jwtState);
+			console.log('COOODDDDEEE', code);
 			account = await googleAuth(code);
 			// console.log('account', account);
 			// let email = account.email;
@@ -38,22 +38,19 @@ export const get = async (req) => {
 			body: 'not authorized'
 		};
 	}
-};
+}
 
 async function googleAuth(code) {
-	const tokenEndpoint = await fetch(
-		'https://accounts.google.com/.well-known/openid-configuration',
-		{
-			headers: { Accept: 'application/json' }
-		}
-	)
-		.then((r) => r.json())
-		.then((r) => r.token_endpoint);
+	const wellKnown = await fetch('https://accounts.google.com/.well-known/openid-configuration', {
+		headers: { Accept: 'application/json' }
+	});
+	const wellKnownJson = await wellKnown.json();
 
+	// console.log('TOKKKEN', tokenEndpoint);
 	// let json = await googleDiscoveryDoc.json();
 	// let token_endpoint = json.token_endpoint;
 
-	const idToken = await fetch(tokenEndpoint, {
+	const idToken = await fetch(wellKnownJson.token_endpoint, {
 		method: 'POST',
 		headers: { Accept: 'application/json' },
 		body: JSON.stringify({
@@ -63,12 +60,11 @@ async function googleAuth(code) {
 			redirect_uri: process.env['AUTH_REDIRECT'],
 			grant_type: 'authorization_code'
 		})
-	})
-		.then((r) => r.json())
-		.then((r) => r.id_token);
+	});
+	const idTokenJson = await idToken.json();
 
 	// let resultJson = await result.json();
 	// console.log(resultJson);
 	// return jwt.decode(result.id_token);
-	return jwt.decode(idToken);
+	return jwt.decode(idTokenJson.id_token);
 }

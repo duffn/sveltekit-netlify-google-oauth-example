@@ -12,17 +12,15 @@
 	export let user;
 </script>
 
-<h1>Welcome to SvelteKit</h1>
-<p>
-	Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation
-</p>
+<h1>Welcome</h1>
+
 {#if user}
 	<h2>Welcome {user}</h2>
-	<a href="/logout">
+	<a href="/logout" rel="external">
 		<button>Logout</button>
 	</a>
 {:else}
-	<a href="/login">
+	<a href="/login" rel="external">
 		<button>Login using Github</button>
 	</a>
 {/if}
