@@ -21,6 +21,6 @@
 	</a>
 {:else}
 	<a href="/auth/login" rel="external">
-		<button>Login using Github</button>
+		<button>Login using Google</button>
 	</a>
 {/if}
