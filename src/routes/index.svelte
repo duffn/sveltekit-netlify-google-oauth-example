@@ -3,7 +3,7 @@
 
   export async function load() {
     let endpoint = process.env.NODE_ENV === 'development' ? '/.netlify/functions' : '/api';
-    const res = await fetch(`${endpoint}/auth/status`);
+    const res = await fetch(`https://svelte-oauth-example.netlify.app${endpoint}/auth/status`);
 
     if (res.ok) {
       const json = await res.json();
