@@ -5,7 +5,7 @@
 
   onMount(async () => {
     let endpoint = process.env.NODE_ENV === 'development' ? '/.netlify/functions' : '/api';
-    const res = await fetch(`${process.env.URL}${endpoint}/auth/status`);
+    const res = await fetch(`${endpoint}/auth/status`);
 
     if (res.ok) {
       const json = await res.json();
