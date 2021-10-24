@@ -1,4 +1,13 @@
-<script>
+<script context="module">
+  export async function load({ page }) {
+    return {
+      status: 302,
+      redirect: `/api/auth/google`
+    };
+  }
+</script>
+
+<!-- <script>
   import { onMount } from 'svelte';
 
   let user;
@@ -14,7 +23,7 @@
       user = null;
     }
   });
-</script>
+</script> -->
 
 <svelte:head>
   <title>OAuth with Google</title>
