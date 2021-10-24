@@ -17,7 +17,7 @@ app.use(cookieParser());
 app.use(passport.initialize());
 
 const handleCallback = () => (req, res) => {
-  res.cookie('jwt', req.user.jwt, { httpOnly: true, COOKIE_SECURE }).redirect(`/`);
+  res.cookie('jwt', req.user.jwt, { httpOnly: true, secure: COOKIE_SECURE }).redirect(`/`);
 };
 
 app.get(
