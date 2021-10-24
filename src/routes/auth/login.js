@@ -1,7 +1,7 @@
-import googleOAuthUrl from '../../auth/loginUrlUrl';
+import googleOAuthUrl from './loginUrl';
 
-export function get() {
-	const loginUrl = googleOAuthUrl({ finalRedirect: '/' });
+export async function get() {
+	const loginUrl = await googleOAuthUrl({ finalRedirect: '/' });
 	return {
 		status: 302,
 		headers: {
