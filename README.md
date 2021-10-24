@@ -16,6 +16,12 @@ node -p "require('crypto').randomBytes(64).toString('hex');"
 ```
 
 - The other values can remain the same for local development.
+- Install dependencies and run.
+
+```
+npm install
+npm run dev
+```
 
 ### Netlify
 
