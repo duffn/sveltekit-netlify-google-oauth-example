@@ -15,6 +15,7 @@ A long titled repository showing how you could potentially use SvelteKit deploye
 node -p "require('crypto').randomBytes(64).toString('hex');"
 ```
 
+- Optionally set `AUTHORIZED_DOMAIN` to restrict authentication to only this domain.
 - The other values can remain the same for local development.
 - Install dependencies and run.
 
