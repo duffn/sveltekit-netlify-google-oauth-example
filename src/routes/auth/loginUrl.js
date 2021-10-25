@@ -15,6 +15,7 @@ export default async function googleOAuthUrl({ finalRedirect }) {
 		process.env['JWT_SECRET'],
 		{ expiresIn: '1 hour' }
 	);
+
 	const options = {
 		access_type: 'online',
 		scope: ['profile', 'email'],

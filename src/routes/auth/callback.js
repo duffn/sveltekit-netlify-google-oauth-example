@@ -11,18 +11,21 @@ export async function get(req) {
 			const account = await googleAuth(code);
 
 			const authorizedDomain = process.env['AUTHORIZED_DOMAIN'];
-			if (authorizedDomain && account['hd'] !== authorizedDomain) {
+			if (authorizedDomain && account.hd !== authorizedDomain) {
 				return {
 					status: 401,
 					body: 'not authorized'
 				};
 			}
 
-			req.locals.user = account['email'];
+			req.locals.user = JSON.stringify({
+				email: account.email,
+				name: account.name
+			});
 
 			return {
 				status: 302,
-				headers: { Location: jwtState['finalRedirect'] }
+				headers: { Location: jwtState.finalRedirect }
 			};
 		} catch (err) {
 			return {

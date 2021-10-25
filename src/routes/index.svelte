@@ -15,7 +15,13 @@
 <h1>Welcome</h1>
 
 {#if user}
-	<h2>Welcome {user}</h2>
+	<p>Hi {JSON.parse(user).name}.</p>
+
+	<p>Here's your information.</p>
+	<pre>
+		{user}
+	</pre>
+
 	<a href="/auth/logout" rel="external">
 		<button>Logout</button>
 	</a>
