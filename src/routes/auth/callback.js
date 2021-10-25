@@ -9,7 +9,6 @@ export async function get(req) {
 			const jwtState = jwt.verify(state, process.env['JWT_SECRET']);
 
 			const account = await googleAuth(code);
-			req.locals.user = account['email'];
 
 			const authorizedDomain = process.env['AUTHORIZED_DOMAIN'];
 			if (authorizedDomain && account['hd'] !== authorizedDomain) {
@@ -18,6 +17,8 @@ export async function get(req) {
 					body: 'not authorized'
 				};
 			}
+
+			req.locals.user = account['email'];
 
 			return {
 				status: 302,
