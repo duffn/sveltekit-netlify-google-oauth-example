@@ -38,6 +38,7 @@ Thanks to a few different articles and authors for inspiration and help.
 
 - [Sveltekit Authentication](https://blog.hyper.io/sveltekit-authentication/)
 - [Serverless OAuth with Multiple Providers](https://ryanbethel.org/serverless-o-auth-with-multiple-providers)
+- [Creative Tim Tailwind Starter](https://www.creative-tim.com/learning-lab/tailwind-starter-kit/presentation)
 
 ## License
 
